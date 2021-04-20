@@ -40,6 +40,9 @@ Categorías de objetos de aprendizaje
 							En este momento no tenemos ninguno.
 						</div>
 					<?php } ?>
+
+					<div class="col-12 text-center mt-5"><?php echo $pager->links() ?></div>
+
 				</div>
 			</div>
 

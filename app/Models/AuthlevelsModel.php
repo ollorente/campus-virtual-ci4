@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\AuthLevelEntity;
 
-class AuthlevelsModel extends Model
+class AuthLevelsModel extends Model
 {
 	protected $table                = 'authlevels';
 	protected $primaryKey           = '_id';
 
-	protected $returnType           = 'array';
+	protected $returnType           = AuthLevelEntity::class;
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
 	protected $allowedFields        = ['name'];

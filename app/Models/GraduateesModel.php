@@ -3,18 +3,17 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\GraduateEntity;
 
-class UsersInfoModel extends Model
+class GraduateesModel extends Model
 {
-	protected $DBGroup              = 'default';
-	protected $table                = 'usersinfos';
-	protected $primaryKey           = 'id';
-	protected $useAutoIncrement     = true;
-	protected $insertID             = 0;
-	protected $returnType           = 'array';
+	protected $table                = 'graduatees';
+	protected $primaryKey           = '_id';
+
+	protected $returnType           = GraduateEntity::class;
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = ['graduateName', 'graduateNameUrl', 'isGraduateActive'];
 
 	// Dates
 	protected $useTimestamps        = false;

@@ -260,7 +260,7 @@ class InitSeeder extends Seeder
 			[
 				'objectTaxonomyName' => 'Ciencias de la salud',
 				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720004/categorias/objetos/ciencias-de-la-salud_xkpzt1.jpg',
-				'isObjectTaxonomyActive' => 1,
+				'isObjectTaxonomyActive' => 0,
 			],
 			[
 				'objectTaxonomyName' => 'Ciencias sociales y humanas',
