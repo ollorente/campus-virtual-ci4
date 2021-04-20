@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Entities\ResourcetaxonomyEntity;
 
-class TaxonomyresourcesModel extends Model
+class TaxonomyResourcesModel extends Model
 {
 	protected $table                = 'resourcetaxonomies';
 	protected $primaryKey           = '_id';

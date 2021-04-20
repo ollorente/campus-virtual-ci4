@@ -3,7 +3,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/backoffice">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url(route_to(('admin_dash'))) ?>">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img src="https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607725128/logo_sietic_tni1d8.png" alt="Backoffice">
             </div>
@@ -15,7 +15,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/backoffice">
+            <a class="nav-link" href="<?php echo base_url(route_to(('admin_dash'))) ?>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -37,8 +37,8 @@
             <div id="courses" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="/backoffice/cursos">Listado</a>
-                    <a class="collapse-item" href="/backoffice/cursos/nuevo">Nuevo curso</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_courses'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_course'))) ?>">Nuevo curso</a>
                 </div>
             </div>
         </li>
@@ -52,8 +52,8 @@
             <div id="graduates" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/diplomados">Listado</a>
-                    <a class="collapse-item" href="/backoffice/diplomados/nuevo">Nuevo diplomado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_graduates'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_graduate'))) ?>">Nuevo diplomado</a>
                 </div>
             </div>
         </li>
@@ -67,8 +67,8 @@
             <div id="programs" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/programas">Listado</a>
-                    <a class="collapse-item" href="/backoffice/programas/nuevo">Nuevo programa</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_programs'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_program'))) ?>">Nuevo programa</a>
                 </div>
             </div>
         </li>
@@ -90,8 +90,8 @@
             <div id="tools" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/herramientas">Listado</a>
-                    <a class="collapse-item" href="/backoffice/herramientas/nueva">Nueva herramienta</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_tools'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_tool'))) ?>">Nueva herramienta</a>
                 </div>
             </div>
         </li>
@@ -105,8 +105,8 @@
             <div id="tutorials" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/tutoriales">Listado</a>
-                    <a class="collapse-item" href="/backoffice/tutoriales/nuevo">Nuevo tutorial</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_tutorials'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_tutorial'))) ?>">Nuevo tutorial</a>
                 </div>
             </div>
         </li>
@@ -128,10 +128,10 @@
             <div id="objects" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/objetos">Listado</a>
-                    <a class="collapse-item" href="/backoffice/objetos/nuevo">Nuevo objeto</a>
-                    <a class="collapse-item" href="/backoffice/objetos/subir-imagen">Subir imagen</a>
-                    <a class="collapse-item" href="/backoffice/objetos/subir-objeto">Subir objeto</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_objects'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_object'))) ?>">Nuevo objeto</a>
+                    <?php if (isset($_objects)): ?><a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Subir imagen</a><?php endif ?>
+                    <?php if (isset($_objects)): ?><a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Subir objeto</a><?php endif ?>
                 </div>
             </div>
         </li>
@@ -145,9 +145,9 @@
             <div id="resources" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/recursos">Listado</a>
-                    <a class="collapse-item" href="/backoffice/recursos/nuevo">Nuevo recurso</a>
-                    <a class="collapse-item" href="/backoffice/recursos/subir">Subir foto</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Nuevo recurso</a>
+                    <?php if (isset($_resource)): ?><a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Subir foto</a><?php endif ?>
                 </div>
             </div>
         </li>
@@ -168,10 +168,10 @@
             <div id="settings" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/configuracion/menus">Menús</a>
-                    <a class="collapse-item" href="/backoffice/configuracion/objetos">Objetos</a>
-                    <a class="collapse-item" href="/backoffice/configuracion/recursos">Recursos</a>
-                    <a class="collapse-item" href="/backoffice/configuracion/roles">Roles</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_menus'))) ?>">Menús</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_objects'))) ?>">Objetos</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_resources'))) ?>">Recursos</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_roles'))) ?>">Roles</a>
                 </div>
             </div>
         </li>
@@ -190,8 +190,8 @@
             <div id="users" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="/backoffice/usuarios">Listado</a>
-                    <a class="collapse-item" href="/backoffice/usuarios/nuevo">Nuevo recurso</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_users'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_setting_new_user'))) ?>">Nuevo recurso</a>
                 </div>
             </div>
         </li>
@@ -220,20 +220,6 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <?php if(isset($isSearch)){ ?>
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                <?php } ?>
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -245,20 +231,20 @@
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="/backoffice/perfil">
+                            <a class="dropdown-item" href="<?php echo base_url(route_to(('admin_profile'))) ?>">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Perfil
                             </a>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
+                                Configuraciones
                             </a>
-                            <a class="dropdown-item" href="/" target="_blank">
+                            <a class="dropdown-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>" target="_blank">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Ver sitio web
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="<?php echo base_url(route_to('admin_signout')) ?>" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Salir
                             </a>

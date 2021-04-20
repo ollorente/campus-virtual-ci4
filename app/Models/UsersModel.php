@@ -65,4 +65,11 @@ class UsersModel extends Model
 			$this->assignGroup = $row->_id;
 		}
 	}
+
+	public function getUserBy(string $column, string $value)
+	{
+		$model = model('UsersModel');
+
+		return $model->where($column, $value)->first();
+	}
 }

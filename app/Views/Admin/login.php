@@ -13,14 +13,27 @@ Login
 	<div class="container">
 		<div class="row">
 
+			<?php if (session(('mgs'))) : ?>
+				<div class="col-12">
+					<div class="col-6 offset-3">
+						<div class="card text-white bg-<?php echo session('mgs.type') ?> mb-3">
+							<div class="card-body">
+								<h5 class="card-title"><?php echo session('mgs.title') ?></h5>
+								<p class="card-text"><?php echo session('mgs.body') ?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endif ?>
+
 			<div class="col-12 col-md-6 offset-md-3">
 				<h1 class="mb-3 text-center title__main h3">Login</h1>
-				<form action="backoffice/login">
+				<form action="<?php echo base_url(route_to('admin_signin')) ?>" method="POST">
 					<div class="form-group">
-						<input type="email" class="form-control form-control-user" id="login_string" name="login_string" placeholder="Ingrese Correo electrónico...">
+						<input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Ingrese Correo electrónico...">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control form-control-user" id="login_pass" name="login_pass" placeholder="Password">
+						<input type="password" class="form-control form-control-user" id="passwd" name="passwd" placeholder="Password">
 					</div>
 					<button class="btn btn--azul btn-block" type="submit" name="submit" value="Login" id="submit_button">ENTRAR</button>
 				</form>
