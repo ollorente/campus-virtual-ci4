@@ -15,14 +15,18 @@ Registro
 
 			<div class="col-12 col-md-6 offset-md-3">
 				<h1 class="mb-3 text-center title__main h3">Registro</h1>
-				<form action="backoffice/login">
+				<form action="<?= base_url('register/store') ?>" method="POST">
 					<div class="form-group">
-						<input type="email" class="form-control form-control-user" id="login_string" name="login_string" placeholder="Ingrese Correo electrónico...">
+						<input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Ingrese Correo electrónico..." autofocus required>
+					</div>
+					<p class="help"><?php // ERROR ?></p>
+					<div class="form-group">
+						<input type="password" class="form-control form-control-user" id="passwd" name="passwd" placeholder="Contraseña" required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control form-control-user" id="login_pass" name="login_pass" placeholder="Password">
+						<input type="password" class="form-control form-control-user" id="passwd_confirm" name="passwd_confirm" placeholder="Confirmar contraseña">
 					</div>
-					<button class="btn btn--azul btn-block" type="submit" name="submit" value="Login" id="submit_button">CREAR</button>
+					<button class="btn btn--azul btn-block" type="submit">CREAR</button>
 				</form>
 			</div>
 

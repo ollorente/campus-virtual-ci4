@@ -7,13 +7,7 @@ use CodeIgniter\Entity;
 class UserEntity extends Entity
 {
 	protected $datamap = [];
-	protected $dates   = [
-		'passwd_recovery_date',
-		'passwd_modified_at',
-		'last_login',
-		'created_at',
-		'modified_at',
-	];
+	protected $dates   = ['passwd_recovery_date', 'passwd_modified_at', 'last_login', 'created_at', 'updated_at'];
 	protected $casts   = [];
 
 	protected function setPassword(string $password)

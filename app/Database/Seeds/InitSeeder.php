@@ -42,19 +42,128 @@ class InitSeeder extends Seeder
 		$builder = $this->db->table('roles');
 		$builder->insertBatch($roles);
 
+		$authlevels = [
+			[
+				'name' => 'student',
+			],
+			[
+				'name' => 'teacher',
+			],
+			[
+				'name' => 'admin',
+			],
+			[
+				'name' => 'superuser',
+			],
+		];
+
+		$builder = $this->db->table('authlevels');
+		$builder->insertBatch($authlevels);
+
 		$users = [
 			[
 				'username' => 'admin',
 				'email' => 'admin@admin.com',
-				'auth_level' => 9,
-				'banned' => 0,
-				'passwd' => '$2y$10$MlGUK4LuOvjHgSeLMF8BE.W6OMP6nT4Va1IOf1UOlnbSAMb/KYIOy',
+				'auth_level' => 4,
+				'banned' => '0',
+				'passwd' => '$2y$10$ihBogxF7VYyEM3mvhHSwPuoJwYYhBkgy0GmLvBoF.Zv70B163WnEG',
 				'passwd_recovery_code' => NULL,
 				'passwd_recovery_date' => NULL,
 				'passwd_modified_at' => NULL,
 				'last_login' => NULL,
 				'created_at' =>  date('Y-m-d H:i:s'),
-				'modified_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'oscar.llorente',
+				'email' => 'oscar.llorente@unicolmayor.edu.co',
+				'auth_level' => 4,
+				'banned' => '0',
+				'passwd' => '$2y$10$yf5QVF6SVhMefwavF4C7MuQCL0djr1icC0udX0Q3oUZ/sRMan1uCm',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'marcela.romero',
+				'email' => 'marcela.romero@unicolmayor.edu.co',
+				'auth_level' => 3,
+				'banned' => '0',
+				'passwd' => '$2y$10$EsJk18q1U2yu2o4dts1toeXlT8K2wv./h8NqVU0czlHQ3OkuGFIii',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'cindy.cuellar',
+				'email' => 'cindy.cuellar@unicolmayor.edu.co',
+				'auth_level' => 3,
+				'banned' => '0',
+				'passwd' => '$2y$10$OOjSxQE6Zq6KOCsh9TLGKuh5ztPYMPg0bO.mMoyxinA6Jja06ocvK',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'eder.ramirez',
+				'email' => 'eder.ramirez@unicolmayor.edu.co',
+				'auth_level' => 3,
+				'banned' => '0',
+				'passwd' => '$2y$10$KpbIvgFDYg92H0QVDM3nGeTQhpp4r4YBSR9ySl5w/qiIL6ZjJ7zjm',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'johnarevalo',
+				'email' => 'johnarevalo@unicolmayor.edu.co',
+				'auth_level' => 3,
+				'banned' => '0',
+				'passwd' => '$2y$10$gtWbGs/RhUzwCHYfh1on/OFrXrVpQd7m9k/I99ktr4g0OVy0RPcTi',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'landreanino',
+				'email' => 'landreanino@unicolmayor.edu.co',
+				'auth_level' => 3,
+				'banned' => '0',
+				'passwd' => '$2y$10$B.i8eQWy.f3qN2S.JpN4ne/J0fpcLvWsqOignfILKQaSizg3Z2Pfe',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
+			],
+			[
+				'username' => 'sietic',
+				'email' => 'sietic@unicolmayor.edu.co',
+				'auth_level' => 4,
+				'banned' => '0',
+				'passwd' => '$2y$10$uidDocN4Uo7394DCeilQ6.hdO33od92n0uYhEu5B37UykLFDNro5m',
+				'passwd_recovery_code' => NULL,
+				'passwd_recovery_date' => NULL,
+				'passwd_modified_at' => NULL,
+				'last_login' => NULL,
+				'created_at' =>  date('Y-m-d H:i:s'),
+				'updated_at' =>  date('Y-m-d H:i:s'),
 			],
 		];
 
@@ -133,159 +242,159 @@ class InitSeeder extends Seeder
 				'isMenuActive' => 0,
 			],
 		];
-		
+
 		$builder = $this->db->table('menus');
 		$builder->insertBatch($menus);
-		
+
 		$objecttaxonomies = [
 			[
 				'objectTaxonomyName' => 'Agronomía, veterinaria',
-				'objectTaxonomySlug' => 'agronomia-veterinaria',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720004/categorias/objetos/agronomia-veterinaria_w4cq22.jpg',
 				'isObjectTaxonomyActive' => 0,
 			],
 			[
 				'objectTaxonomyName' => 'Bellas artes',
-				'objectTaxonomySlug' => 'bellas-artes',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720004/categorias/objetos/bellas-artes_aoaxnn.jpg',
 				'isObjectTaxonomyActive' => 0,
 			],
 			[
 				'objectTaxonomyName' => 'Ciencias de la salud',
-				'objectTaxonomySlug' => 'ciencias-de-la-salud',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720004/categorias/objetos/ciencias-de-la-salud_xkpzt1.jpg',
 				'isObjectTaxonomyActive' => 1,
 			],
 			[
 				'objectTaxonomyName' => 'Ciencias sociales y humanas',
-				'objectTaxonomySlug' => 'ciencias-sociales-y-humanas',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720004/categorias/objetos/ciencias-sociales-y-humanas_dglmzk.jpg',
 				'isObjectTaxonomyActive' => 1,
 			],
 			[
 				'objectTaxonomyName' => 'Economía, administración, contaduría',
-				'objectTaxonomySlug' => 'economia-administracion-contaduria',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720005/categorias/objetos/economia-administracion-contaduria_crnn8l.jpg',
 				'isObjectTaxonomyActive' => 1,
 			],
 			[
 				'objectTaxonomyName' => 'Ingeniería, arquitectura, urbanismo',
-				'objectTaxonomySlug' => 'ingenieria-arquitectura-urbanismo',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720006/categorias/objetos/ingenieria-arquitectura-urbanismo_tciiv3.jpg',
 				'isObjectTaxonomyActive' => 1,
 			],
 			[
 				'objectTaxonomyName' => 'Matemáticas y ciencias naturales',
-				'objectTaxonomySlug' => 'matematicas-y-ciencias-naturales',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720005/categorias/objetos/matematicas-y-ciencias-naturales_zt4a5j.jpg',
 				'isObjectTaxonomyActive' => 0,
 			],
 			[
 				'objectTaxonomyName' => 'Investigaciones',
-				'objectTaxonomySlug' => 'investigaciones',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720005/categorias/objetos/investigaciones_thnygv.jpg',
 				'isObjectTaxonomyActive' => 0,
 			],
 			[
 				'objectTaxonomyName' => 'Ciencias Básicas',
-				'objectTaxonomySlug' => 'ciencias-basicas',
+				'objectTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1614463537/categorias/objetos/ciencias-basicas.jpg',
 				'isObjectTaxonomyActive' => 1,
 			],
 		];
-		
+
 		$builder = $this->db->table('objecttaxonomies');
 		$builder->insertBatch($objecttaxonomies);
-		
+
 		$resourcetaxonomies = [
 			[
 				'resourceTaxonomyName' => 'Animales y Naturaleza',
-				'resourceTaxonomySlug' => 'animales-y-naturaleza',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720005/categorias/recursos/animales-y-naturaleza_s3ywcz.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Arquitectura',
-				'resourceTaxonomySlug' => 'arquitectura',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720006/categorias/recursos/arquitectura_sl5gwi.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Comidas y Bebidas',
-				'resourceTaxonomySlug' => 'comidas-y-bebidas',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720006/categorias/recursos/comidas-y-bebidas_zaypom.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Conceptos e Ideas',
-				'resourceTaxonomySlug' => 'conceptos-e-ideas',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/conceptos-e-ideas_g2zst9.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Deportes',
-				'resourceTaxonomySlug' => 'deportes',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/deportes_zk2rj3.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Educación',
-				'resourceTaxonomySlug' => 'educacion',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/educacion_wjqlp1.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Escenarios',
-				'resourceTaxonomySlug' => 'escenarios',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/escenarios_sy60ya.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Fechas Especiales',
-				'resourceTaxonomySlug' => 'fechas-especiales',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/fechas-especiales_dizpvd.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Fondo',
-				'resourceTaxonomySlug' => 'fondo',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/fondo_ubmkym.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Ilustraciones',
-				'resourceTaxonomySlug' => 'ilustraciones',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720008/categorias/recursos/ilustraciones_cns215.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Negociaciones',
-				'resourceTaxonomySlug' => 'negociaciones',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720009/categorias/recursos/negociaciones_ya2udu.pngs',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Personas',
-				'resourceTaxonomySlug' => 'personas',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720008/categorias/recursos/personas_kgafyu.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Recreación',
-				'resourceTaxonomySlug' => 'recreacion',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/deportes_zk2rj3.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Salud y Medicina',
-				'resourceTaxonomySlug' => 'salud-y-medicina',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720008/categorias/recursos/salud-y-medicina_a69o7y.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Tecnología',
-				'resourceTaxonomySlug' => 'tecnologia',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720008/categorias/recursos/tecnologia_qsyswo.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Template',
-				'resourceTaxonomySlug' => 'template',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/fondo_ubmkym.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Template Fondo Blanco',
-				'resourceTaxonomySlug' => 'template-fondo-blanco',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720007/categorias/recursos/fondo_ubmkym.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Textura',
-				'resourceTaxonomySlug' => 'textura',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720009/categorias/recursos/template-fondo-blanco_plcr0v.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 			[
 				'resourceTaxonomyName' => 'Transporte',
-				'resourceTaxonomySlug' => 'transporte',
+				'resourceTaxonomySlug' => 'https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607720009/categorias/recursos/transporte_b02qdf.png',
 				'isResourceTaxonomyActive' => 1,
 			],
 		];
-		
+
 		$builder = $this->db->table('resourcetaxonomies');
 		$builder->insertBatch($resourcetaxonomies);
 	}

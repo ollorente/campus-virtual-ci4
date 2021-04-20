@@ -1,19 +1,27 @@
-<?= $this->extend('Front/layouts/main') ?>
+<?php echo $this->extend('Front/layouts/main') ?>
 
 <?php // ===X=== TITLE ===X=== ?>
-<?= $this->section('title') ?>
+<?php echo $this->section('title') ?>
 Categorías del banco de recursos
-<?= $this->endSection('title') ?>
+<?php echo $this->endSection('title') ?>
 
 <?php // ===X=== CONTENT ===X=== ?>
-<?= $this->section('content') ?>
-<h1>Categorías del banco de recursos</h1>
-<?= $this->endSection('content') ?>
+<?php echo $this->section('content') ?>
+<main id="main" class="main d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            
+            <h1>Categorías del banco de recursos</h1>
+
+		</div>
+	</div>
+</main>
+<?php echo $this->endSection('content') ?>
 
 <?php // ===X=== SCRIPTS ===X=== ?>
-<?= $this->section('js') ?>
-<?= $this->endSection('js') ?>
+<?php echo $this->section('js') ?>
+<?php echo $this->endSection('js') ?>
 
 <?php // ===X=== STYLES ===X=== ?>
-<?= $this->section('css') ?>
-<?= $this->endSection('css') ?>
+<?php echo $this->section('css') ?>
+<?php echo $this->endSection('css') ?>

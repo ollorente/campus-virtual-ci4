@@ -30,9 +30,10 @@ class Users extends Migration
 				'unique'			=> true,
 			],
 			'auth_level'			=> [
-				'type'				=> 'TINYINT',
-				'constraint'		=> 3,
+				'type'				=> 'INT',
+				'constraint'		=> 11,
 				'unsigned'			=> true,
+				'null'				=> false,
 			],
 			'banned'				=> [
 				'type'				=> 'ENUM("0","1")',
@@ -65,12 +66,13 @@ class Users extends Migration
 				'type'				=> 'DATETIME',
 				'null'				=> false,
 			],
-			'modified_at'			=> [
+			'updated_at'			=> [
 				'type'				=> 'DATETIME',
 				'null'				=> true,
 			],
 		]);
 		$this->forge->addKey('_id', true);
+		$this->forge->addForeignKey('auth_level', 'authlevels', '_id', 'CASCADE', 'SET NULL');
 		$this->forge->createTable('users');
 		$this->db->enableForeignKeyChecks();
 	}

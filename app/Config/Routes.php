@@ -54,11 +54,11 @@ $routes->group('/', ['namespace' => 'App\Controllers\Front'], function ($routes)
 
 	$routes->get('tutoriales-para-docentes', 'Tutorial::teachers', ['as' => 'teacher_tutorials']);
 	$routes->get('tutoriales-para-estudiantes', 'Tutorial::students', ['as' => 'student_tutorials']);
-
 });
 
 $routes->group('/register', ['namespace' => 'App\Controllers\Register'], function ($routes) {
 	$routes->get('', 'Home::index', ['as' => 'admin_register']);
+	$routes->post('store', 'Home::store', ['as' => 'admin_register_store']);
 });
 
 $routes->group('/backoffice', ['namespace' => 'App\Controllers\Admin'], function ($routes) {

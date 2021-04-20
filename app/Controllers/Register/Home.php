@@ -7,29 +7,47 @@ use App\Entities\UserEntity;
 
 class Home extends BaseController
 {
+	protected $configs;
+
+	public function __construct()
+	{
+		$this->configs = config('Blog');
+	}
+
 	public function index()
 	{
-		$data = [
-			'email'					=> 'test123@test.com',
-			'passwd'				=> 'password123456',
-			'auth_level'			=> 9,
-			'banned'				=> '0',
-			'passwd_recovery_code'	=> NULL,
-			'passwd_recovery_date'	=> NULL,
-			'passwd_modified_at'	=> NULL,
-			'last_login'			=> NULL,
-		];
-
-		$user = new UserEntity($data);
-		$user->generateUsername();
-		$user->passwd = password_hash($user->passwd, PASSWORD_BCRYPT);
-		d($user);
-
 		return view('Admin/register');
 	}
 
 	public function store()
 	{
-		//
+		$validation = service('validation');
+		$validation->setRules([
+			'email'	 => 'required|valid_email|is_unique[users.email]',
+			'passwd' => 'required|min_length[8]|max_length[255]|matches[passwd_confirm]',
+		]);
+
+		if (!$validation->withRequest($this->request)->run()) {
+			dd($validation->getErrors());
+			return redirect()
+				->back()
+				->withInput()
+				->with('errors', $validation->getErrors());
+		}
+
+		$user = new UserEntity($this->request->getPost());
+		$user->generateUsername();
+		$user->passwd = password_hash($user->passwd, PASSWORD_BCRYPT);
+
+		$model = model('UsersModel');
+		$model->withGroup($this->configs->defaultGroupUsers);
+		$model->save($user);
+
+		return redirect()
+			->route('admin_register')
+			->with('msg', [
+				'type' => 'is-success',
+				'body' => '¡Usuario registrado con éxito!',
+			]);
 	}
 }

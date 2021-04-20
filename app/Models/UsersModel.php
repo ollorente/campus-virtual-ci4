@@ -22,25 +22,47 @@ class UsersModel extends Model
 		'passwd_recovery_code',
 		'passwd_recovery_date',
 		'passwd_modified_at',
-		'last_login'
+		'last_login',
 	];
 
 	// Dates
 	protected $useTimestamps			= true;
-	protected $dateFormat				= 'datetime';
 	protected $passwdRecoveryDateField	= 'passwd_recovery_date';
 	protected $passwdMdifiedField		= 'passwd_modified_at';
 	protected $lastLoginField			= 'last_login';
 	protected $createdField				= 'created_at';
 	protected $modifiedField			= 'modified_at';
+	protected $updatedField				= 'updated_at';
 
 	// Validation
 	protected $validationRules			= [
 		'username'	=> 'required|alpha_numeric|max_length[40]',
-		'email'		=> 'required|is_valid_email|max_length[80]',
+		'email'		=> 'required|valid_email|max_length[80]',
 		'passwd'	=> 'required|min_length[8]|max_length[255]',
 	];
 	protected $validationMessages   = [];
-	protected $skipValidation       = false;
-	protected $cleanValidationRules = true;
+	protected $skipValidation       = true;
+	protected $cleanValidationRules = false;
+
+	protected $beforeInsert = ['addGroup'];
+
+	protected $assignGroup;
+
+	protected function addGroup($data)
+	{
+		$data['data']['auth_level'] = $this->assignGroup;
+		return $data;
+	}
+
+	public function withGroup(string $group)
+	{
+		$row = $this->db->table('authlevels')
+			->where('name', $group)
+			->get()
+			->getFirstRow();
+
+		if ($row != null) {
+			$this->assignGroup = $row->_id;
+		}
+	}
 }

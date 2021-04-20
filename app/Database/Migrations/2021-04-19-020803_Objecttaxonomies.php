@@ -25,7 +25,6 @@ class Objecttaxonomies extends Migration
 			'objectTaxonomySlug'		=> [
 				'type'					=> 'VARCHAR',
 				'constraint'			=> 255,
-				'unique'				=> true,
 			],
 			'isObjectTaxonomyActive'	=> [
 				'type'					=> 'TINYINT',

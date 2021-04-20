@@ -25,7 +25,6 @@ class Resourcetaxonomies extends Migration
 			'resourceTaxonomySlug'		=> [
 				'type'					=> 'VARCHAR',
 				'constraint'			=> 255,
-				'unique'				=> true,
 			],
 			'isResourceTaxonomyActive'	=> [
 				'type'					=> 'TINYINT',
