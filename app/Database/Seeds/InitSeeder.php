@@ -44,16 +44,16 @@ class InitSeeder extends Seeder
 
 		$authlevels = [
 			[
-				'name' => 'student',
+				'name' => 'Estudiante',
 			],
 			[
-				'name' => 'teacher',
+				'name' => 'Docente',
 			],
 			[
-				'name' => 'admin',
+				'name' => 'Administrador',
 			],
 			[
-				'name' => 'superuser',
+				'name' => 'Superusuario',
 			],
 		];
 

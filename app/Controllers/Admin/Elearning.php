@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Elearning extends BaseController
 {
@@ -10,14 +11,21 @@ class Elearning extends BaseController
 	{
 		$model = model('ObjectsModel');
 
-		return view('Admin/objects');
+		return view('Admin/objects', [
+			'objects' => $model
+				->orderBy('objectTitle', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('ObjectsModel');
+		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/new_object');
+		return view('Admin/new_object', [
+			'taxonomies' => $model->where('isObjectTaxonomyActive', 1)->orderBy('objectTaxonomyName', 'ASC')->findAll()
+		]);
 	}
 
 	public function create()
@@ -29,16 +37,34 @@ class Elearning extends BaseController
 
 	public function get(string $id)
 	{
-		$model = model('ObjectsModel');
+		$modelObjects = model('ObjectsModel');
+		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
 
-		return view('Admin/object');
+		if (!$object = $modelObjects->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		$taxonomy = $modelTaxonomyElearnings->where('_id', $object->objectTaxonomy)->first();
+
+		return view('Admin/object', [
+			'object' => $object,
+			'taxonomy' => $taxonomy
+		]);
 	}
 
 	public function edit(string $id)
 	{
-		$model = model('ObjectsModel');
+		$modelObjects = model('ObjectsModel');
+		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
 
-		return view('Admin/edit_object');
+		if (!$object = $modelObjects->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/edit_object', [
+			'object' => $object,
+			'taxonomies' => $modelTaxonomyElearnings->where('isObjectTaxonomyActive', 1)->orderBy('objectTaxonomyName', 'ASC')->findAll()
+		]);
 	}
 
 	public function update()

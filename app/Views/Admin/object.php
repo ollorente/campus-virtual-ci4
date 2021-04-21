@@ -1,30 +1,21 @@
-<?= $this->extend('Admin/layouts/main') ?>
+<?php echo $this->extend('Admin/layouts/main') ?>
 
-<?php // ===X=== TITLE ===X=== ?>
-<?= $this->section('title') ?>
-Dashboard
-<?= $this->endSection('title') ?>
+<?php // ===X=== TITLE ===X=== 
+?>
+<?php echo $this->section('title') ?>
+Objeto
+<?php echo $this->endSection('title') ?>
 
-<?php // ===X=== CONTENT ===X=== ?>
-<?= $this->section('content') ?>
-<h1>Dashboard</h1>
-<?= $this->endSection('content') ?>
-
-<?php // ===X=== SCRIPTS ===X=== ?>
-<?= $this->section('js') ?>
-<?= $this->endSection('js') ?>
-
-<?php // ===X=== STYLES ===X=== ?>
-<?= $this->section('css') ?>
-<?= $this->endSection('css') ?>
-
+<?php // ===X=== CONTENT ===X=== 
+?>
+<?php echo $this->section('content') ?>
 <!-- Begin Page Content -->
 <div class="container-fluid" id="main">
 
 	<div class="row">
 		<div class="col-12 d-flex justify-content-between align-items-center mb-4">
-			<h1 class="h3 text-gray-800">Objeto <b><?= $object->_id ?></b></h1>
-			<a href="<?= base_url('backoffice/objetos') ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
+			<h1 class="h3 text-gray-800">Objeto<br></b><b><?php echo $object->objectTitle ?></b></h1>
+			<a href="<?php echo base_url(route_to('admin_objects')) ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
 		</div>
 
 		<div class="col-12">
@@ -33,131 +24,133 @@ Dashboard
 				<p class="px-3 py-2 my-0">
 					<b>Imagen:</b>
 					<br>
-					<div class="px-3 text-center">
-						<?php if ($object->objectLink) { ?>
-						<img src="<?= base_url($object->objectLink) ?>" class="img-fluid rounded">
-						<?php } else { ?>
-						<img src="<?= base_url('assets/img/no-hay.png') ?>" class="rounded">
-						<?php } ?>
-					</div>
+				<div class="px-3 text-center">
+					<?php if ($object->objectLink) { ?>
+						<img src="<?php echo base_url($object->objectLink) ?>" class="img-fluid rounded">
+					<?php } else { ?>
+						<img src="<?php echo base_url('assets/img/no-hay.png') ?>" class="rounded">
+					<?php } ?>
+				</div>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Youtube:</b>
 					<br>
-					<div class="px-3 text-center">
-						<?php if ($object->objectYoutube) { ?>
+				<div class="px-3 text-center">
+					<?php if ($object->objectYoutube) { ?>
 						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item"
-								src="https://www.youtube.com/embed/<?= $object->objectYoutube ?>?rel=0"
-								allowfullscreen></iframe>
+							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $object->objectYoutube ?>?rel=0" allowfullscreen></iframe>
 						</div>
-						<?php } else { ?>
-						<img src="<?= base_url('assets/img/no-hay.png') ?>" class="rounded">
-						<?php } ?>
-					</div>
+					<?php } else { ?>
+						<img src="<?php echo base_url('assets/img/no-hay.png') ?>" class="rounded">
+					<?php } ?>
+				</div>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Objeto:</b>
-					<br><?= $object->objectObject ?>
+					<br><?php echo $object->objectObject ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Área:</b>
-					<br><?= $object->objectArea ?>
+					<br><?php echo $object->objectArea ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Área del conocimiento:</b>
-					<br><?= $object->objectKnowlessTopic ?>
+					<br><?php echo $object->objectKnowlessTopic ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Localización:</b>
-					<br><?= $object->objectHosting ?>
+					<br><?php echo $object->objectHosting ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Título:</b>
-					<br><?= $object->objectTitle ?>
+					<br><?php echo $object->objectTitle ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Descripción:</b>
-					<br><?= $object->objectDescription ?>
+					<br><?php echo $object->objectDescription ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Lenguaje:</b>
-					<br><?= $object->objectLanguage ?>
+					<br><?php echo $object->objectLanguage ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Palabras clave:</b>
-					<br><?= $object->objectKeyWords ?>
+					<br><?php echo $object->objectKeyWords ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Formato:</b>
-					<br><?= $object->objectFormat ?>
+					<br><?php echo $object->objectFormat ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Tamaño:</b>
-					<br><?= $object->objectSize ?>
+					<br><?php echo $object->objectSize ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Requerimientos:</b>
-					<br><?= $object->objectRequirement ?>
+					<br><?php echo $object->objectRequirement ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Instrucciones:</b>
-					<br><?= $object->objectInstructions ?>
+					<br><?php echo $object->objectInstructions ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Versión:</b>
-					<br><?= $object->objectVersion ?>
+					<br><?php echo $object->objectVersion ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Contribuidores:</b>
-					<br><?= $object->objectContributors ?>
+					<br><?php echo $object->objectContributors ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Entidades:</b>
-					<br><?= $object->objectEntities ?>
+					<br><?php echo $object->objectEntities ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Creado:</b>
-					<br><?php $fecha = explode(' ', $object->objectCreatedAt); echo $fecha[0] ?>
+					<br><?php $fecha = explode(' ', $object->objectCreatedAt);
+						echo $fecha[0] ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Interactividad:</b>
-					<br><?= $object->objectInteractivity ?>
+					<br><?php echo $object->objectInteractivity ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Costo:</b>
-					<br><?= $object->objectCost ?>
+					<br><?php echo $object->objectCost ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Derechos:</b>
-					<br><?= $object->objectRights ?>
+					<br><?php echo $object->objectRights ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Uso:</b>
-					<br><?= $object->objectUse ?>
+					<br><?php echo $object->objectUse ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Clasificación:</b>
-					<br><?= $object->objectClasification ?>
+					<br><?php echo $object->objectClasification ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Taxonomía:</b>
-					<br><?= $taxonomy->objectTaxonomyName ?>
+					<br><?php echo $taxonomy->objectTaxonomyName ?>
 				</p>
 				<p class="px-3 py-2 my-0">
 					<b>Vistas:</b>
-					<br><?= $object->objectViews ?>
+					<br><?php echo $object->objectViews ?>
 				</p>
 				<p class="px-3 py-2 my-0">
-					<div class="custom-control custom-switch mx-3">
-						<input type="checkbox" class="custom-control-input" name="isActive" id="isActive"
-							<?php if ($object->isObjectActive == 1) { echo 'checked="checked"'; } else { echo ''; } ?>>
-						<label class="custom-control-label" for="isActive">Activo</label>
-					</div>
+				<div class="custom-control custom-switch mx-3">
+					<input
+						type="checkbox"
+						class="custom-control-input"
+						name="isActive"
+						id="isActive"
+						<?php if ($object->isObjectActive == 1) { echo 'checked="checked"'; } else { echo ''; } ?>>
+					<label class="custom-control-label" for="isActive">Activo</label>
+				</div>
 				</p>
 				<p class="px-3 py-2 mt-0 mb-3">
-					<a href="<?= base_url('backoffice/objeto/'. $object->_id .'/editar') ?>"
-						class="btn btn-outline-warning btn-block" role="button">Editar</a>
+					<a href="<?php echo base_url(route_to('admin_edit_object', $object->_id)) ?>" class="btn btn-outline-warning btn-block" role="button">Editar</a>
 				</p>
 			</div>
 
@@ -167,3 +160,14 @@ Dashboard
 
 </div>
 <!-- /.container-fluid -->
+<?php echo $this->endSection('content') ?>
+
+<?php // ===X=== SCRIPTS ===X=== 
+?>
+<?php echo $this->section('js') ?>
+<?php echo $this->endSection('js') ?>
+
+<?php // ===X=== STYLES ===X=== 
+?>
+<?php echo $this->section('css') ?>
+<?php echo $this->endSection('css') ?>

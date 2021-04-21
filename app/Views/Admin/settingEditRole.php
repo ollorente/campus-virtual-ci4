@@ -1,52 +1,39 @@
-<?= $this->extend('Admin/layouts/main') ?>
+<?php echo $this->extend('Admin/layouts/main') ?>
 
 <?php // ===X=== TITLE ===X=== ?>
-<?= $this->section('title') ?>
-Dashboard
-<?= $this->endSection('title') ?>
+<?php echo $this->section('title') ?>
+Editar role
+<?php echo $this->endSection('title') ?>
 
 <?php // ===X=== CONTENT ===X=== ?>
-<?= $this->section('content') ?>
-<h1>Dashboard</h1>
-<?= $this->endSection('content') ?>
-
-<?php // ===X=== SCRIPTS ===X=== ?>
-<?= $this->section('js') ?>
-<?= $this->endSection('js') ?>
-
-<?php // ===X=== STYLES ===X=== ?>
-<?= $this->section('css') ?>
-<?= $this->endSection('css') ?>
-
+<?php echo $this->section('content') ?>
 <!-- Begin Page Content -->
 <div class="container-fluid" id="main">
 
 	<div class="row">
 		<div class="col-12 d-flex justify-content-between align-items-center mb-4">
-			<h1 class="h3 text-gray-800">Editar role <b><?= $role->roleName ?></b></h1>
-			<a href="<?= base_url('backoffice/configuracion/role/') . $role->roleNameUrl ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
+			<h1 class="h3 text-gray-800">Editar role<br><b><?php echo $role->roleName ?></b></h1>
+			<a href="<?php echo base_url('backoffice/configuracion/role/') . $role->roleNameUrl ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
 		</div>
 
 		<div class="col-12">
 
-			<?= '<span class="text-danger font-weight-bold">'. validation_errors() .'</span>' ?>
-			<?= isset( $updated ) ? $updated : '' ?>
-			<?= form_open() ?>
+			<form action="" method="POST">
 				<div class="form-group">
 					<label for="name">Título del curso</label>
-					<input type="text" class="form-control" name="name" value="<?= $role->roleName ?>" id="name" placeholder="Título del role" required autofocus>
+					<input type="text" class="form-control" name="name" value="<?php echo $role->roleName ?>" id="name" placeholder="Título del role" required autofocus>
 				</div>
 				<div class="form-group">
 					<label for="url">Link del curso</label>
-					<input type="text" class="form-control" name="url" value="<?= $role->roleNameUrl ?>" id="url" placeholder="Link del role" required>
+					<input type="text" class="form-control" name="url" value="<?php echo $role->roleNameUrl ?>" id="url" placeholder="Link del role" required>
 				</div>
 				<div class="form-group">
 					<label for="url">Imagen</label>
-					<input type="text" class="form-control" name="image" value="<?= $role->roleImage ?>" id="image" placeholder="Archivo">
+					<input type="text" class="form-control" name="image" value="<?php echo $role->roleImage ?>" id="image" placeholder="Archivo">
 				</div>
 				<div class="form-group">
 					<label for="url">Order</label>
-					<input type="number" class="form-control" name="order" value="<?= $role->roleOrder ?>" id="order" placeholder="Orden">
+					<input type="number" class="form-control" name="order" min="0" value="<?php echo $role->roleOrder ?>" id="order" placeholder="Orden">
 				</div>
 				<div class="form-group">
                     <label for="is_active">Activo</label>
@@ -56,7 +43,7 @@ Dashboard
                     </select>
                 </div>
 				<button type="submit" class="btn btn-warning btn-block">Actualizar</button>
-			<?= form_close() ?>
+			</form>
 
 		</div>
 
@@ -64,3 +51,13 @@ Dashboard
 
 </div>
 <!-- /.container-fluid -->
+<?php echo $this->endSection('content') ?>
+
+<?php // ===X=== SCRIPTS ===X=== ?>
+<?php echo $this->section('js') ?>
+<?php echo $this->endSection('js') ?>
+
+<?php // ===X=== STYLES ===X=== ?>
+<?php echo $this->section('css') ?>
+<?php echo $this->endSection('css') ?>
+

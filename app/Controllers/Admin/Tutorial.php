@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Tutorial extends BaseController
 {
@@ -21,9 +22,11 @@ class Tutorial extends BaseController
 
 	public function new()
 	{
-		$model = model('TutorialsModel');
+		$model = model('RolesModel');
 
-		return view('Admin/new_tutorial');
+		return view('Admin/new_tutorial', [
+			'roles' => $model->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
+		]);
 	}
 
 	public function create()
@@ -35,16 +38,34 @@ class Tutorial extends BaseController
 
 	public function get(string $id)
 	{
-		$model = model('TutorialsModel');
+		$modelTutorials = model('TutorialsModel');
+		$modelRoles = model('RolesModel');
 
-		return view('Admin/tutorial');
+		if (!$tutorial = $modelTutorials->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		$role = $modelRoles->where('_id', $tutorial->tutorialRole)->first();
+
+		return view('Admin/tutorial', [
+			'tutorial' => $tutorial,
+			'role' => $role
+		]);
 	}
 
 	public function edit(string $id)
 	{
-		$model = model('TutorialsModel');
+		$modelTutorials = model('TutorialsModel');
+		$modelRoles = model('RolesModel');
 
-		return view('Admin/edit_tutorial');
+		if (!$tutorial = $modelTutorials->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/edit_tutorial', [
+			'tutorial' => $tutorial,
+			'roles' => $modelRoles->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
+		]);
 	}
 
 	public function update()

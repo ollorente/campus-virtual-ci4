@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Role extends BaseController
 {
@@ -10,14 +11,17 @@ class Role extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/roles');
+		return view('Admin/settingRoles', [
+			'roles' => $model
+				->orderBy('roleName', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('RolesModel');
-
-		return view('Admin/new_role');
+		return view('Admin/settingNewRole');
 	}
 
 	public function create()
@@ -31,14 +35,26 @@ class Role extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/role');
+		if (!$role = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingRole', [
+			'role' => $role
+		]);
 	}
 
 	public function edit(string $id)
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/edit_role');
+		if (!$role = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingEditRole', [
+			'role' => $role
+		]);
 	}
 
 	public function update()

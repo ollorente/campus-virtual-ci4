@@ -3,7 +3,7 @@
 <?php // ===X=== TITLE ===X=== 
 ?>
 <?= $this->section('title') ?>
-Nueva categoría de objeto
+Nuevo nivel de acceso
 <?= $this->endSection('title') ?>
 
 <?php // ===X=== CONTENT ===X=== 
@@ -14,27 +14,16 @@ Nueva categoría de objeto
 
 	<div class="row">
 		<div class="col-12 d-flex justify-content-between align-items-center mb-4">
-			<h1 class="h3 text-gray-800">Nueva categoría de objeto</b></h1>
-			<a href="<?php echo base_url(route_to('admin_setting_objects')) ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
+			<h1 class="h3 text-gray-800">Nuevo nivel de acceso</h1>
+			<a href="<?php echo base_url(route_to('admin_setting_auth_levels')) ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
 		</div>
 
 		<div class="col-12">
 
 			<form action="" method="POST">
 				<div class="form-group">
-					<label for="name">Título de la categoría</label>
-					<input type="text" class="form-control" name="name" id="name" placeholder="Título del menú" required autofocus>
-				</div>
-				<div class="form-group">
-					<label for="slug">Slug de la categoría</label>
-					<input type="text" class="form-control" name="slug" id="slug" placeholder="Link del menú" required>
-				</div>
-				<div class="form-group">
-					<label for="is_active">Activo</label>
-					<select class="form-control" name="is_active" id="is_active">
-						<option value="0" selected>No</option>
-						<option value="1">Si</option>
-					</select>
+					<label for="name">Nombre de nivel</label>
+					<input type="text" class="form-control" name="name" id="name" placeholder="Título del role" required autofocus>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Crear</button>
 			</form>

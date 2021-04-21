@@ -6,6 +6,6 @@ use CodeIgniter\Config\BaseConfig;
 
 class Blog extends BaseConfig
 {
-    public $defaultGroupUsers = 'student';
+    public $defaultGroupUsers = 'Estudiante';
     public $regPerPage = 12;
 }

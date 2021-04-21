@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class User extends BaseController
 {
@@ -10,14 +11,21 @@ class User extends BaseController
 	{
 		$model = model('UsersModel');
 
-		return view('Admin/settingUsers');
+		return view('Admin/settingUsers', [
+			'users' => $model
+				->orderBy('username', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('UsersModel');
+		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingNewUser');
+		return view('Admin/settingNewUser', [
+			'authLevels' => $model->orderBy('name', 'ASC')->findAll()
+		]);
 	}
 
 	public function create()
@@ -29,16 +37,34 @@ class User extends BaseController
 
 	public function get(string $id)
 	{
-		$model = model('UsersModel');
+		$modelUsers = model('UsersModel');
+		$modelAuthLevels = model('AuthLevelsModel');
 
-		return view('Admin/settingUser');
+		if (!$user = $modelUsers->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		$authLevel = $modelAuthLevels->where('_id', $user->auth_level)->first();
+
+		return view('Admin/settingUser', [
+			'user' => $user,
+			'level' => $authLevel
+		]);
 	}
 
 	public function edit(string $id)
 	{
-		$model = model('UsersModel');
+		$modelUsers = model('UsersModel');
+		$modelAuthLevels = model('AuthLevelsModel');
 
-		return view('Admin/settingEditUser');
+		if (!$user = $modelUsers->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingEditUser', [
+			'user' => $user,
+			'authLevels' => $modelAuthLevels->where('name != "Superusuario"')->orderBy('name', 'ASC')->findAll()
+		]);
 	}
 
 	public function update()

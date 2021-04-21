@@ -3,55 +3,73 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class TaxonomyElearning extends BaseController
 {
 	public function index()
 	{
-		$model = model('TaxonomyElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/objects');
+		return view('Admin/settingObjects', [
+			'objecttaxonomies' => $model
+				->orderBy('objectTaxonomyName', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('TaxonomyElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/new_object');
+		return view('Admin/settingNewObject');
 	}
 
 	public function create()
 	{
-		$model = model('TaxonomyElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/objects');
+		return view('Admin/settingObjects');
 	}
 
 	public function get(string $id)
 	{
-		$model = model('TaxonomyElearningModel');
+		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
 
-		return view('Admin/object');
+		if (!$taxonomy = $modelTaxonomyElearnings->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingObject', [
+			'objecttaxonomies' =>  $taxonomy
+		]);
 	}
 
 	public function edit(string $id)
 	{
-		$model = model('TaxonomyElearningModel');
+		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
 
-		return view('Admin/edit_object');
+		if (!$taxonomy = $modelTaxonomyElearnings->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingEditObject', [
+			'objecttaxonomies' =>  $taxonomy
+		]);
 	}
 
 	public function update()
 	{
-		$model = model('TaxonomyElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
 		return view('Admin/object');
 	}
 
 	public function delete(string $id)
 	{
-		$model = model('TaxonomyElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/objects');
+		return view('Admin/settingObjects');
 	}
 }

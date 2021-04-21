@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Menu extends BaseController
 {
@@ -10,14 +11,21 @@ class Menu extends BaseController
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenus');
+		return view('Admin/settingMenus', [
+			'menus' => $model
+				->orderBy('menuName', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('MenusModel');
+		$model = model('RolesModel');
 
-		return view('Admin/settingNewMenu');
+		return view('Admin/settingNewMenu', [
+			'roles' => $model->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
+		]);
 	}
 
 	public function create()
@@ -31,14 +39,28 @@ class Menu extends BaseController
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenu');
+		if (!$menu = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingMenu', [
+			'menu' => $menu
+		]);
 	}
 
 	public function edit(string $id)
 	{
-		$model = model('MenusModel');
+		$modelMenu = model('MenusModel');
+		$modelRoles = model('RolesModel');
 
-		return view('Admin/settingEditMenu');
+		if (!$menu = $modelMenu->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/settingEditMenu', [
+			'menu' => $menu,
+			'roles' => $modelRoles->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
+		]);
 	}
 
 	public function update()
