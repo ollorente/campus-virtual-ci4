@@ -1,30 +1,19 @@
-<?= $this->extend('Admin/layouts/main') ?>
+<?php echo $this->extend('Admin/layouts/main') ?>
 
 <?php // ===X=== TITLE ===X=== ?>
-<?= $this->section('title') ?>
-Dashboard
-<?= $this->endSection('title') ?>
+<?php echo $this->section('title') ?>
+Recurso
+<?php echo $this->endSection('title') ?>
 
 <?php // ===X=== CONTENT ===X=== ?>
-<?= $this->section('content') ?>
-<h1>Dashboard</h1>
-<?= $this->endSection('content') ?>
-
-<?php // ===X=== SCRIPTS ===X=== ?>
-<?= $this->section('js') ?>
-<?= $this->endSection('js') ?>
-
-<?php // ===X=== STYLES ===X=== ?>
-<?= $this->section('css') ?>
-<?= $this->endSection('css') ?>
-
+<?php echo $this->section('content') ?>
 <!-- Begin Page Content -->
 <div class="container-fluid" id="main">
 
 	<div class="row">
 		<div class="col-12 d-flex justify-content-between align-items-center mb-4">
-			<h1 class="h3 text-gray-800">Recurso <b><?= $resource->resourceCode ?></b></h1>
-			<a href="<?= base_url('backoffice/recursos') ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
+			<h1 class="h3 text-gray-800">Recurso<br><b><?php echo $resource->resourceCode ?></b></h1>
+			<a href="<?php echo base_url(route_to('admin_resources')) ?>" class="btn btn-outline-secondary btn-sm" role="button">Volver</a>
 		</div>
 
 		<div class="col-12">
@@ -36,47 +25,47 @@ Dashboard
             <br>
             <div class="px-3 text-center">
               <?php if ($resource->resourceLink) { ?>
-              <img src="<?= base_url($resource->resourceLink) ?>" class="img-fluid rounded">
+              <img src="<?php echo base_url($resource->resourceLink) ?>" class="img-fluid rounded">
               <?php } else { ?>
-              <img src="<?= base_url('assets/img/no-hay.png') ?>" class="rounded">
+              <img src="<?php echo base_url('assets/img/no-hay.png') ?>" class="rounded">
               <?php } ?>
             </div>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Área:</b>
-            <br><?= $resource->resourceArea ?>
+            <br><?php echo $resource->resourceArea ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Área del conocimiento:</b>
-            <br><?= $resource->resourceKnowlessTopic ?>
+            <br><?php echo $resource->resourceKnowlessTopic ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Palabras claves:</b>
-            <br><?= $resource->resourceKeyWords ?>
+            <br><?php echo $resource->resourceKeyWords ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Formato:</b>
-            <br><?= $resource->resourceFormat ?>
+            <br><?php echo $resource->resourceFormat ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Entidades:</b>
-            <br><?= $resource->resourceEntities ?>
+            <br><?php echo $resource->resourceEntities ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Costo:</b>
-            <br><?= $resource->resourceCost ?>
+            <br><?php echo $resource->resourceCost ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Derechos:</b>
-            <br><?= $resource->resourceRights ?>
+            <br><?php echo $resource->resourceRights ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Taxonomía:</b>
-            <br><?= $taxonomy->resourceTaxonomyName ?>
+            <br><?php echo $taxonomy->resourceTaxonomyName ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Código:</b>
-            <br><?= $resource->resourceCode ?>
+            <br><?php echo $resource->resourceCode ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Creado:</b>
@@ -84,11 +73,11 @@ Dashboard
           </p>
           <p class="px-3 py-2 my-0">
             <b>Accesos:</b>
-            <br><?= $resource->resourceCodeAccess ?>
+            <br><?php echo $resource->resourceCodeAccess ?>
           </p>
           <p class="px-3 py-2 my-0">
             <b>Vistas:</b>
-            <br><?= $resource->resourceViews ?>
+            <br><?php echo $resource->resourceViews ?>
           </p>
           <p class="px-3 py-2 my-0">
             <div class="custom-control custom-switch mx-3">
@@ -97,7 +86,7 @@ Dashboard
             </div>
           </p>
           <p class="px-3 py-2 mt-0 mb-3">
-            <a href="<?= base_url('backoffice/recurso/'. $resource->resourceCode .'/editar') ?>" class="btn btn-outline-warning btn-block" role="button">Editar</a>
+            <a href="<?php echo base_url(route_to('admin_edit_resource', $resource->_id)) ?>" class="btn btn-outline-warning btn-block" role="button">Editar</a>
           </p>
         </div>
       </div>
@@ -108,3 +97,13 @@ Dashboard
 
 </div>
 <!-- /.container-fluid -->
+<?php echo $this->endSection('content') ?>
+
+<?php // ===X=== SCRIPTS ===X=== ?>
+<?php echo $this->section('js') ?>
+<?php echo $this->endSection('js') ?>
+
+<?php // ===X=== STYLES ===X=== ?>
+<?php echo $this->section('css') ?>
+<?php echo $this->endSection('css') ?>
+

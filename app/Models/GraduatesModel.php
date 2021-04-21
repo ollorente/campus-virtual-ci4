@@ -5,9 +5,9 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Entities\GraduateEntity;
 
-class GraduateesModel extends Model
+class GraduatesModel extends Model
 {
-	protected $table                = 'graduatees';
+	protected $table                = 'graduates';
 	protected $primaryKey           = '_id';
 
 	protected $returnType           = GraduateEntity::class;

@@ -11,7 +11,7 @@ class TaxonomyElearning extends BaseController
 	{
 		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/settingObjects', [
+		return view('Admin/object/settingObjects', [
 			'objecttaxonomies' => $model
 				->orderBy('objectTaxonomyName', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -23,14 +23,14 @@ class TaxonomyElearning extends BaseController
 	{
 		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/settingNewObject');
+		return view('Admin/object/settingNewObject');
 	}
 
 	public function create()
 	{
 		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/settingObjects');
+		return view('Admin/object/settingObjects');
 	}
 
 	public function get(string $id)
@@ -41,7 +41,7 @@ class TaxonomyElearning extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingObject', [
+		return view('Admin/object/settingObject', [
 			'objecttaxonomies' =>  $taxonomy
 		]);
 	}
@@ -54,7 +54,7 @@ class TaxonomyElearning extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingEditObject', [
+		return view('Admin/object/settingEditObject', [
 			'objecttaxonomies' =>  $taxonomy
 		]);
 	}
@@ -63,13 +63,13 @@ class TaxonomyElearning extends BaseController
 	{
 		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/object');
+		return view('Admin/object/object');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('TaxonomiesElearningsModel');
 
-		return view('Admin/settingObjects');
+		return view('Admin/object/settingObjects');
 	}
 }

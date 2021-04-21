@@ -5,11 +5,11 @@ namespace App\Controllers\Front;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class Taxonomyelearning extends BaseController
+class TaxonomyElearning extends BaseController
 {
 	public function index()
 	{
-		$model = model('TaxonomiesElearningModel');
+		$model = model('TaxonomiesElearningsModel');
 
 		return view('Front/objetos-de-aprendizaje-categorias', [
 			'taxonomies' => $model
@@ -20,9 +20,9 @@ class Taxonomyelearning extends BaseController
 		]);
 	}
 
-	public function getTaxonomyObject(string $id)
+	public function get(string $id)
 	{
-		$modelObjectTaxonomies = model('TaxonomiesElearningModel');
+		$modelObjectTaxonomies = model('TaxonomiesElearningsModel');
 		$modelObjects = model('ObjectsModel');
 
 		if (!$category = $modelObjectTaxonomies->where('_id', $id)->first()) {

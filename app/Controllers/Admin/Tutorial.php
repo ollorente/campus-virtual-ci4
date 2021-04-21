@@ -11,7 +11,7 @@ class Tutorial extends BaseController
 	{
 		$model = model('TutorialsModel');
 
-		return view('Admin/tutorials', [
+		return view('Admin/tutorial/tutorials', [
 			'tutorials' => $model
 				->orderBy('isTutorialLock', 0)
 				->orderBy('tutorialTitle', 'ASC')
@@ -24,7 +24,7 @@ class Tutorial extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/new_tutorial', [
+		return view('Admin/tutorial/new_tutorial', [
 			'roles' => $model->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
 	}
@@ -33,7 +33,7 @@ class Tutorial extends BaseController
 	{
 		$model = model('TutorialsModel');
 
-		return view('Admin/tutorials');
+		return view('Admin/tutorial/tutorials');
 	}
 
 	public function get(string $id)
@@ -47,7 +47,7 @@ class Tutorial extends BaseController
 
 		$role = $modelRoles->where('_id', $tutorial->tutorialRole)->first();
 
-		return view('Admin/tutorial', [
+		return view('Admin/tutorial/tutorial', [
 			'tutorial' => $tutorial,
 			'role' => $role
 		]);
@@ -62,7 +62,7 @@ class Tutorial extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/edit_tutorial', [
+		return view('Admin/tutorial/edit_tutorial', [
 			'tutorial' => $tutorial,
 			'roles' => $modelRoles->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
@@ -72,13 +72,13 @@ class Tutorial extends BaseController
 	{
 		$model = model('TutorialsModel');
 
-		return view('Admin/tutorial');
+		return view('Admin/tutorial/tutorial');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('TutorialsModel');
 
-		return view('Admin/tutorials');
+		return view('Admin/tutorial/tutorials');
 	}
 }

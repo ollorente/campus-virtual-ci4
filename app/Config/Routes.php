@@ -47,8 +47,8 @@ $routes->group('/', ['namespace' => 'App\Controllers\Front'], function ($routes)
 	$routes->get('objetos-de-aprendizaje', 'Elearning::index', ['as' => 'objects']);
 	$routes->get('objeto-de-aprendizaje/(:any)', 'Elearning::getObject/$1', ['as' => 'object']);
 
-	$routes->get('objetos-de-aprendizaje/categorias', 'Taxonomyelearning::index', ['as' => 'objects_categories']);
-	$routes->get('objetos-de-aprendizaje/categoria/(:any)', 'Taxonomyelearning::getTaxonomyObject/$1', ['as' => 'objects_category']);
+	$routes->get('objetos-de-aprendizaje/categorias', 'TaxonomyElearning::index', ['as' => 'objects_categories']);
+	$routes->get('objetos-de-aprendizaje/categoria/(:any)', 'TaxonomyElearning::get/$1', ['as' => 'objects_category']);
 
 	$routes->get('quienes-somos', 'About::index', ['as' => 'about']);
 
@@ -63,7 +63,7 @@ $routes->group('/register', ['namespace' => 'App\Controllers\Register'], functio
 
 $routes->group('/backoffice', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
 	$routes->get('', 'Home::index', ['as' => 'admin_home']); // TODO -> Que logueee
-	$routes->post('check', 'Home::signin', ['as' => 'admin_signin']);
+	$routes->post('check', 'Home::signin', ['as' => 'admin_signin']); // TODO -> por hacer
 	$routes->get('logout', 'Home::signout', ['as' => 'admin_signout']);
 
 	$routes->get('perfil', 'User::dashboard', ['as' => 'admin_profile']); // TODO -> por hacer
@@ -72,15 +72,17 @@ $routes->group('/backoffice', ['namespace' => 'App\Controllers\Admin'], function
 	// Plataforma
 	$routes->get('dashboard', 'Home::dashboard', ['as' => 'admin_dash']); // TODO -> por hacer
 
-	$routes->get('cursos', 'Course::index', ['as' => 'admin_courses']); // TODO -> por hacer
-	$routes->get('curso/nuevo', 'Course::new', ['as' => 'admin_new_course']); // TODO -> por hacer
-	$routes->get('curso/(:any)/editar', 'Course::get/$1', ['as' => 'admin_edit_course']); // TODO -> por hacer
-	$routes->get('curso/(:any)', 'Course::edit/$1', ['as' => 'admin_course']); // TODO -> por hacer
+	$routes->get('cursos', 'Course::index', ['as' => 'admin_courses']);
+	$routes->get('curso/nuevo', 'Course::new', ['as' => 'admin_new_course']);
+	$routes->post('curso/store', 'Course::create', ['as' => 'admin_create_course']);
+	$routes->get('curso/(:any)/editar', 'Course::edit/$1', ['as' => 'admin_edit_course']); // TODO -> Que edite
+	$routes->post('curso/(:any)/actualizar', 'Course::update/$1', ['as' => 'admin_update_course']); // TODO -> Que edite
+	$routes->get('curso/(:any)', 'Course::get/$1', ['as' => 'admin_course']);
 
-	$routes->get('diplomados', 'Graduate::index', ['as' => 'admin_graduates']); // TODO -> por hacer
-	$routes->get('diplomado/nuevo', 'Graduate::new', ['as' => 'admin_new_graduate']); // TODO -> por hacer
-	$routes->get('diplomado/(:any)/editar', 'Graduate::get/$1', ['as' => 'admin_edit_graduate']); // TODO -> por hacer
-	$routes->get('diplomado/(:any)', 'Graduate::edit/$1', ['as' => 'admin_graduate']); // TODO -> por hacer
+	$routes->get('diplomados', 'Graduate::index', ['as' => 'admin_graduates']);
+	$routes->get('diplomado/nuevo', 'Graduate::new', ['as' => 'admin_new_graduate']); // TODO -> Que cree
+	$routes->get('diplomado/(:any)/editar', 'Graduate::edit/$1', ['as' => 'admin_edit_graduate']); // TODO -> Que edite
+	$routes->get('diplomado/(:any)', 'Graduate::get/$1', ['as' => 'admin_graduate']);
 
 	$routes->get('herramientas', 'Tool::index', ['as' => 'admin_tools']);
 	$routes->get('herramienta/nueva', 'Tool::new', ['as' => 'admin_new_tool']); // TODO -> Que cree
@@ -89,13 +91,19 @@ $routes->group('/backoffice', ['namespace' => 'App\Controllers\Admin'], function
 
 	$routes->get('objetos', 'Elearning::index', ['as' => 'admin_objects']);
 	$routes->get('objeto/nuevo', 'Elearning::new', ['as' => 'admin_new_object']); // TODO -> Que cree
+	$routes->post('objeto/store', 'Elearning::create', ['as' => 'admin_create_object']); // TODO -> Que cree
 	$routes->get('objeto/(:any)/editar', 'Elearning::edit/$1', ['as' => 'admin_edit_object']); // TODO -> Que edite
 	$routes->get('objeto/(:any)', 'Elearning::get/$1', ['as' => 'admin_object']);
 
-	$routes->get('programas', 'Program::index', ['as' => 'admin_programs']); // TODO -> por hacer
-	$routes->get('programa/nuevo', 'Program::new', ['as' => 'admin_new_program']); // TODO -> por hacer
-	$routes->get('programa/(:any)', 'Program::edit/$1', ['as' => 'admin_program']); // TODO -> por hacer
-	$routes->get('programa/(:any)/editar', 'Program::get/$1', ['as' => 'admin_edit_program']); // TODO -> por hacer
+	$routes->get('programas', 'Program::index', ['as' => 'admin_programs']);
+	$routes->get('programa/nuevo', 'Program::new', ['as' => 'admin_new_program']); // TODO -> Que cree
+	$routes->get('programa/(:any)/editar', 'Program::edit/$1', ['as' => 'admin_edit_program']); // TODO -> Que edite
+	$routes->get('programa/(:any)', 'Program::get/$1', ['as' => 'admin_program']);
+
+	$routes->get('recursos', 'Resource::index', ['as' => 'admin_resources']);
+	$routes->get('recurso/nuevo', 'Resource::new', ['as' => 'admin_new_resource']); // TODO -> Que cree
+	$routes->get('recurso/(:any)/editar', 'Resource::edit/$1', ['as' => 'admin_edit_resource']); // TODO -> Que edite
+	$routes->get('recurso/(:any)', 'Resource::get/$1', ['as' => 'admin_resource']);
 
 	$routes->get('tutoriales', 'Tutorial::index', ['as' => 'admin_tutorials']);
 	$routes->get('tutorial/nuevo', 'Tutorial::new', ['as' => 'admin_new_tutorial']); // TODO -> Que cree
@@ -118,10 +126,10 @@ $routes->group('/backoffice', ['namespace' => 'App\Controllers\Admin'], function
 	$routes->get('configuracion/categoria-de-objeto/(:any)/editar', 'TaxonomyElearning::edit/$1', ['as' => 'admin_setting_edit_object']); // TODO -> Que edite
 	$routes->get('configuracion/categoria-de-objeto/(:any)', 'TaxonomyElearning::get/$1', ['as' => 'admin_setting_object']);
 
-	$routes->get('configuracion/categoria-de-recursos', 'TaxonomyRecourse::index', ['as' => 'admin_setting_resources']); // TODO -> por hacer
-	$routes->get('configuracion/categoria-de-recurso/nuevo', 'TaxonomyRecourse::new', ['as' => 'admin_setting_new_resource']); // TODO -> por hacer
-	$routes->get('configuracion/categoria-de-recurso/(:any)/editar', 'TaxonomyRecourse::get/$1', ['as' => 'admin_setting_edit_resource']); // TODO -> por hacer
-	$routes->get('configuracion/categoria-de-recurso/(:any)', 'TaxonomyRecourse::edit/$1', ['as' => 'admin_setting_resource']); // TODO -> por hacer
+	$routes->get('configuracion/categoria-de-recursos', 'TaxonomyResource::index', ['as' => 'admin_setting_resources']);
+	$routes->get('configuracion/categoria-de-recurso/nueva', 'TaxonomyResource::new', ['as' => 'admin_setting_new_resource']); // TODO -> Que cree
+	$routes->get('configuracion/categoria-de-recurso/(:any)/editar', 'TaxonomyResource::edit/$1', ['as' => 'admin_setting_edit_resource']); // TODO -> Que edite
+	$routes->get('configuracion/categoria-de-recurso/(:any)', 'TaxonomyResource::get/$1', ['as' => 'admin_setting_resource']);
 
 	$routes->get('configuracion/roles', 'Role::index', ['as' => 'admin_setting_roles']);
 	$routes->get('configuracion/role/nuevo', 'Role::new', ['as' => 'admin_setting_new_role']); // TODO -> Que cree

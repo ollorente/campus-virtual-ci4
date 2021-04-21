@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Entities\ToolEntity;
+use App\Entities\UserEntity;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Tool extends BaseController
@@ -12,7 +13,7 @@ class Tool extends BaseController
 	{
 		$model = model('ToolsModel');
 
-		return view('Admin/tools', [
+		return view('Admin/tool/tools', [
 			'tools' => $model
 				->orderBy('toolName', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -24,7 +25,7 @@ class Tool extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/new_tool', [
+		return view('Admin/tool/new_tool', [
 			'roles' => $model->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
 	}
@@ -72,7 +73,7 @@ class Tool extends BaseController
 
 		$role = $modelRoles->where('_id', $tool->toolRole)->first();
 
-		return view('Admin/tool', [
+		return view('Admin/tool/tool', [
 			'tool' => $tool,
 			'role' => $role
 		]);
@@ -87,7 +88,7 @@ class Tool extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/edit_tool', [
+		return view('Admin/tool/edit_tool', [
 			'tool' => $tool,
 			'roles' => $modelRoles->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
@@ -97,7 +98,7 @@ class Tool extends BaseController
 	{
 		$model = model('Model');
 
-		return view('Admin/');
+		return view('Admin/tool/');
 	}
 
 	public function delete()

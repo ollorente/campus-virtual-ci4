@@ -11,7 +11,7 @@ class Role extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/settingRoles', [
+		return view('Admin/role/settingRoles', [
 			'roles' => $model
 				->orderBy('roleName', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -21,14 +21,14 @@ class Role extends BaseController
 
 	public function new()
 	{
-		return view('Admin/settingNewRole');
+		return view('Admin/role/settingNewRole');
 	}
 
 	public function create()
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/roles');
+		return view('Admin/role/roles');
 	}
 
 	public function get(string $id)
@@ -39,7 +39,7 @@ class Role extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingRole', [
+		return view('Admin/role/settingRole', [
 			'role' => $role
 		]);
 	}
@@ -52,7 +52,7 @@ class Role extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingEditRole', [
+		return view('Admin/role/settingEditRole', [
 			'role' => $role
 		]);
 	}
@@ -61,13 +61,13 @@ class Role extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/role');
+		return view('Admin/role/role');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/roles');
+		return view('Admin/role/roles');
 	}
 }

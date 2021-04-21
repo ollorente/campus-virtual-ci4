@@ -20,7 +20,7 @@ Nuevo objeto
 
 		<div class="col-12">
 
-			<form action="" method="POST">
+			<form action="<?php echo base_url(route_to('admin_create_object')) ?>" method="POST">
 				<hr class="mt-0" />
 				<h3 class="h4 text-gray-800 mb-4">General</h3>
 

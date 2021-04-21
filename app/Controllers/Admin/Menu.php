@@ -11,7 +11,7 @@ class Menu extends BaseController
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenus', [
+		return view('Admin/menu/settingMenus', [
 			'menus' => $model
 				->orderBy('menuName', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -23,7 +23,7 @@ class Menu extends BaseController
 	{
 		$model = model('RolesModel');
 
-		return view('Admin/settingNewMenu', [
+		return view('Admin/menu/settingNewMenu', [
 			'roles' => $model->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
 	}
@@ -32,7 +32,7 @@ class Menu extends BaseController
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenus');
+		return view('Admin/menu/settingMenus');
 	}
 
 	public function get(string $id)
@@ -43,7 +43,7 @@ class Menu extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingMenu', [
+		return view('Admin/menu/settingMenu', [
 			'menu' => $menu
 		]);
 	}
@@ -57,7 +57,7 @@ class Menu extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingEditMenu', [
+		return view('Admin/menu/settingEditMenu', [
 			'menu' => $menu,
 			'roles' => $modelRoles->where('isRoleActive', 1)->orderBy('roleName', 'ASC')->findAll()
 		]);
@@ -67,13 +67,13 @@ class Menu extends BaseController
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenu');
+		return view('Admin/menu/settingMenu');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('MenusModel');
 
-		return view('Admin/settingMenus');
+		return view('Admin/menu/settingMenus');
 	}
 }

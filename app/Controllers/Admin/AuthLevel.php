@@ -11,7 +11,7 @@ class AuthLevel extends BaseController
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingAuthLevels', [
+		return view('Admin/authlevel/settingAuthLevels', [
 			'authLevels' => $model
 				->orderBy('name', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -21,23 +21,21 @@ class AuthLevel extends BaseController
 
 	public function new()
 	{
-		$model = model('AuthLevelsModel');
-
-		return view('Admin/settingNewAuthLevel');
+		return view('Admin/authlevel/settingNewAuthLevel');
 	}
 
 	public function create()
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingAuthLevels');
+		return view('Admin/authlevel/settingAuthLevels');
 	}
 
 	public function get(string $id)
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingAuthLevel');
+		return view('Admin/authlevel/settingAuthLevel');
 	}
 
 	public function edit(string $id)
@@ -48,7 +46,7 @@ class AuthLevel extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingEditAuthLevel', [
+		return view('Admin/authlevel/settingEditAuthLevel', [
 			'authLevel' => $level
 		]);
 	}
@@ -57,13 +55,13 @@ class AuthLevel extends BaseController
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingAuthLevel');
+		return view('Admin/authlevel/settingAuthLevel');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingAuthLevels');
+		return view('Admin/authlevel/settingAuthLevels');
 	}
 }

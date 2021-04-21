@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Graduate extends BaseController
 {
@@ -10,48 +11,63 @@ class Graduate extends BaseController
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/graduates');
+		return view('Admin/graduate/graduates', [
+			'graduates' => $model
+				->orderBy('graduateName', 'ASC')
+				->paginate(config('Blog')->regPerPage),
+			'pager' => $model->pager
+		]);
 	}
 
 	public function new()
 	{
-		$model = model('GraduatesModel');
-
-		return view('Admin/graduates');
+		return view('Admin/graduate/new_graduate');
 	}
 
 	public function create()
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/graduates');
+		return view('Admin/graduate/graduates');
 	}
 
 	public function get(string $id)
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/graduate');
+		if (!$graduate = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/graduate/graduate', [
+			'graduate' => $graduate
+		]);
 	}
 
 	public function edit(string $id)
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/edit_graduate');
+		if (!$graduate = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		return view('Admin/graduate/edit_graduate', [
+			'graduate' => $graduate
+		]);
 	}
 
 	public function update()
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/graduate');
+		return view('Admin/graduate/graduate');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('GraduatesModel');
 
-		return view('Admin/graduates');
+		return view('Admin/graduate/graduates');
 	}
 }

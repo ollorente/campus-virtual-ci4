@@ -11,7 +11,7 @@ class User extends BaseController
 	{
 		$model = model('UsersModel');
 
-		return view('Admin/settingUsers', [
+		return view('Admin/user/settingUsers', [
 			'users' => $model
 				->orderBy('username', 'ASC')
 				->paginate(config('Blog')->regPerPage),
@@ -23,7 +23,7 @@ class User extends BaseController
 	{
 		$model = model('AuthLevelsModel');
 
-		return view('Admin/settingNewUser', [
+		return view('Admin/user/settingNewUser', [
 			'authLevels' => $model->orderBy('name', 'ASC')->findAll()
 		]);
 	}
@@ -32,7 +32,7 @@ class User extends BaseController
 	{
 		$model = model('UsersModel');
 
-		return view('Admin/settingUsers');
+		return view('Admin/user/settingUsers');
 	}
 
 	public function get(string $id)
@@ -46,7 +46,7 @@ class User extends BaseController
 
 		$authLevel = $modelAuthLevels->where('_id', $user->auth_level)->first();
 
-		return view('Admin/settingUser', [
+		return view('Admin/user/settingUser', [
 			'user' => $user,
 			'level' => $authLevel
 		]);
@@ -61,7 +61,7 @@ class User extends BaseController
 			throw PageNotFoundException::forPageNotFound();
 		}
 
-		return view('Admin/settingEditUser', [
+		return view('Admin/user/settingEditUser', [
 			'user' => $user,
 			'authLevels' => $modelAuthLevels->where('name != "Superusuario"')->orderBy('name', 'ASC')->findAll()
 		]);
@@ -71,13 +71,13 @@ class User extends BaseController
 	{
 		$model = model('UsersModel');
 
-		return view('Admin/settingUser');
+		return view('Admin/user/settingUser');
 	}
 
 	public function delete(string $id)
 	{
 		$model = model('UsersModel');
 
-		return view('Admin/settingUsers');
+		return view('Admin/user/settingUsers');
 	}
 }

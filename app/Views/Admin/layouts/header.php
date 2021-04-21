@@ -145,8 +145,8 @@
             <div id="resources" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Listado</a>
-                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Nuevo recurso</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_resources'))) ?>">Listado</a>
+                    <a class="collapse-item" href="<?php echo base_url(route_to(('admin_new_resource'))) ?>">Nuevo recurso</a>
                     <?php if (isset($_resource)): ?><a class="collapse-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>">Subir foto</a><?php endif ?>
                 </div>
             </div>
@@ -239,7 +239,7 @@
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Configuraciones
                             </a>
-                            <a class="dropdown-item" href="<?php echo base_url(route_to(('admin_dash'))) ?>" target="_blank">
+                            <a class="dropdown-item" href="<?php echo base_url(route_to(('home'))) ?>" target="_blank">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Ver sitio web
                             </a>
