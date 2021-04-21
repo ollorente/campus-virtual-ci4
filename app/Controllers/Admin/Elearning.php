@@ -66,7 +66,7 @@ class Elearning extends BaseController
 		$data->objectTitle = $this->request->getVar('title');
 		$data->objectDescription = $this->request->getVar('description');
 		$data->objectLanguage = $this->request->getVar('language');
-		$data->objectKeyWords = $this->request->getVar('keyWords');
+		$data->objectKeyWords = $this->request->getVar('key_words');
 		$data->objectLink = $this->request->getVar('link');
 		$data->objectYoutube = $this->request->getVar('youtube');
 		$data->objectFormat = $this->request->getVar('format');
