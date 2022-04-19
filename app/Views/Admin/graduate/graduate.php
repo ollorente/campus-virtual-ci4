@@ -20,7 +20,13 @@ Diplomado
 
     <div class="col-12">
 
-      <div class="card border-0 mb-3 shadow-sm">
+      <?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
+			<div class="card border-0 mb-3 shadow-sm">
         <p class="px-3 py-2 my-0">
           <b>Nombre:</b>
           <br /><?php echo $graduate->graduateName ?>

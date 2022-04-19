@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use App\Entities\GraduateEntity;
 
 class Graduate extends BaseController
 {
@@ -26,9 +27,36 @@ class Graduate extends BaseController
 
 	public function create()
 	{
-		$model = model('GraduatesModel');
+		if (!$this->validate([
+			'name' => 'required|max_length[100]',
+			'url' => 'required|max_length[100]',
+			'is_active' => 'required|alpha_numeric|max_length[1]',
+		])) {
+			return redirect()
+				->back()
+				->withInput()
+				->with('msg', [
+					'type' => 'is-danger',
+					'body' => 'Tienes campos incorrectos',
+				])
+				->with('errors', $this->validator->getErrors());
+		}
 
-		return view('Admin/graduate/graduates');
+		$data = new GraduateEntity($this->request->getPost());
+		$data->graduateName = $this->request->getVar('name');
+		$data->graduateNameUrl = $this->request->getVar('url');
+		$data->isGraduateActive = $this->request->getVar('is_active');
+
+		$model = model('GraduatesModel');
+		$model->save($data);
+
+		return redirect()
+			->route('admin_graduates')
+			->with('msg', [
+				'type' => 'success',
+				'title' => 'Felicitaciones',
+				'body' => '¡Ítem agregado con éxito!',
+			]);
 	}
 
 	public function get(string $id)

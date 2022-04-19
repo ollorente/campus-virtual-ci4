@@ -19,6 +19,13 @@ Categorías de los objetos
 		</div>
 
 		<div class="col-12">
+
+			<?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
 			<div class="d-flex justify-content-between bg-info text-white">
 				<div class="d-flex flex-row">
 					<span class="m-2 text-center">ID</span>

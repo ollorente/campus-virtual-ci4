@@ -18,6 +18,12 @@ Editar curso
 
 		<div class="col-12">
 
+			<?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
 			<form action="<?php echo base_url(route_to('admin_update_course', $course->_id	)) ?>" method="POST">
 				<div class="form-group">
 					<label for="name">Título del curso</label>

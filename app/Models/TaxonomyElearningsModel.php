@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Entities\TaxonomyElearningEntity;
 
-class TaxonomiesElearningsModel extends Model
+class TaxonomyElearningsModel extends Model
 {
 	protected $table                = 'objecttaxonomies';
 	protected $primaryKey           = '_id';

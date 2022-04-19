@@ -20,13 +20,19 @@ Nueva categoría de objeto
 
 		<div class="col-12">
 
-			<form action="" method="POST">
+			<?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
+			<form action="<?php echo base_url(route_to('admin_setting_create_object')) ?>" method="POST">
 				<div class="form-group">
 					<label for="name">Título de la categoría</label>
 					<input type="text" class="form-control" name="name" id="name" placeholder="Título del menú" required autofocus>
 				</div>
 				<div class="form-group">
-					<label for="slug">Slug de la categoría</label>
+					<label for="slug">Imagen de la categoría</label>
 					<input type="text" class="form-control" name="slug" id="slug" placeholder="Link del menú" required>
 				</div>
 				<div class="form-group">

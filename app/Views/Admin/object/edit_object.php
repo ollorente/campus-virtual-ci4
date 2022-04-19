@@ -20,6 +20,12 @@ Editar objeto
 
 		<div class="col-12">
 
+			<?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
 			<form action="<?php echo base_url(route_to('admin_update_object', $object->_id)) ?>" method="POST">
 				<hr class="mt-0" />
 				<h3 class="h4 text-gray-800 mb-4">General</h3>
@@ -162,7 +168,7 @@ Editar objeto
 					</select>
 				</div>
 				<button type="submit" class="btn btn-warning btn-block">Actualizar</button>
-				<input type="hidden" name="id" value="<?php echo $course->_id ?>">
+				<input type="hidden" name="id" value="<?php echo $object->_id ?>">
 			</form>
 
 		</div>

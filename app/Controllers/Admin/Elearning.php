@@ -22,7 +22,7 @@ class Elearning extends BaseController
 
 	public function new()
 	{
-		$model = model('TaxonomiesElearningsModel');
+		$model = model('TaxonomyElearningsModel');
 
 		return view('Admin/object/new_object', [
 			'taxonomies' => $model->where('isObjectTaxonomyActive', 1)->orderBy('objectTaxonomyName', 'ASC')->findAll()
@@ -52,7 +52,7 @@ class Elearning extends BaseController
 				->back()
 				->withInput()
 				->with('msg', [
-					'type' => 'is-danger',
+					'type' => 'danger',
 					'body' => 'Tienes campos incorrectos',
 				])
 				->with('errors', $this->validator->getErrors());
@@ -95,14 +95,14 @@ class Elearning extends BaseController
 			->with('msg', [
 				'type' => 'success',
 				'title' => 'Felicitaciones',
-				'body' => '¡País agregado con éxito!',
+				'body' => '¡Ítem agregado con éxito!',
 			]);
 	}
 
 	public function get(string $id)
 	{
 		$modelObjects = model('ObjectsModel');
-		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
+		$modelTaxonomyElearnings = model('TaxonomyElearningsModel');
 
 		if (!$object = $modelObjects->where('_id', $id)->first()) {
 			throw PageNotFoundException::forPageNotFound();
@@ -119,7 +119,7 @@ class Elearning extends BaseController
 	public function edit(string $id)
 	{
 		$modelObjects = model('ObjectsModel');
-		$modelTaxonomyElearnings = model('TaxonomiesElearningsModel');
+		$modelTaxonomyElearnings = model('TaxonomyElearningsModel');
 
 		if (!$object = $modelObjects->where('_id', $id)->first()) {
 			throw PageNotFoundException::forPageNotFound();
@@ -131,11 +131,80 @@ class Elearning extends BaseController
 		]);
 	}
 
-	public function update()
+	public function update(string $id)
 	{
-		$model = model('ObjectsModel');
+		if (!$this->validate([
+			'id'				=>	'required|is_not_unique[courses._id]',
+			'object'			=> 'required|max_length[255]',
+			'area'				=> 'max_length[110]',
+			'knowless_topic'	=> 'max_length[110]',
+			'hosting'			=> 'max_length[150]',
+			'title'				=> 'max_length[200]',
+			'language'			=> 'max_length[110]',
+			'keyWords'			=> 'max_length[200]',
+			'youtube'			=> 'max_length[30]',
+			'format'			=> 'max_length[30]',
+			'size'				=> 'max_length[30]',
+			'topic'				=> 'max_length[150]',
+			'interactivity'		=> 'max_length[50]',
+			'cost'				=> 'max_length[110]',
+			'taxonomy'			=> 'required|alpha_numeric|max_length[11]',
+			'is_active'			=> 'required|alpha_numeric|max_length[1]'
+		])) {
+			return redirect()
+				->back()
+				->withInput()
+				->with('msg', [
+					'type' => 'danger',
+					'body' => 'Tienes campos incorrectos',
+				])
+				->with('errors', $this->validator->getErrors());
+		}
 
-		return view('Admin/object/object');
+		$model = model('ObjectsModel');
+		
+		if (!$object = $model->where('_id', $id)->first()) {
+			throw PageNotFoundException::forPageNotFound();
+		}
+
+		$model->save([
+			'_id'					=> $this->request->getVar('id'),
+			'objectObject'			=> $this->request->getVar('object'),
+			'objectArea'			=> $this->request->getVar('area'),
+			'objectKnowlessTopic'	=> $this->request->getVar('knowless_topic'),
+			'objectHosting'			=> $this->request->getVar('hosting'),
+			'objectTitle'			=> $this->request->getVar('title'),
+			'objectDescription'		=> $this->request->getVar('description'),
+			'objectLanguage'		=> $this->request->getVar('language'),
+			'objectKeyWords'		=> $this->request->getVar('key_words'),
+			'objectLink'			=> $this->request->getVar('link'),
+			'objectYoutube'			=> $this->request->getVar('youtube'),
+			'objectFormat'			=> $this->request->getVar('format'),
+			'objectSize'			=> $this->request->getVar('size'),
+			'objectRequirement'		=> $this->request->getVar('requirement'),
+			'objectInstructions'	=> $this->request->getVar('instructions'),
+			'objectVersion'			=> $this->request->getVar('version'),
+			'objectContributors'	=> $this->request->getVar('contributors'),
+			'objectEntities'		=> $this->request->getVar('entities'),
+			'objectCreatedAt'		=> $this->request->getVar('created_at'),
+			'objectTopic'			=> $this->request->getVar('topic'),
+			'objectInteractivity'	=> $this->request->getVar('interactivity'),
+			'objectCost'			=> $this->request->getVar('cost'),
+			'objectRights'			=> $this->request->getVar('rights'),
+			'objectUse'				=> $this->request->getVar('use'),
+			'objectClasification'	=> $this->request->getVar('clasification'),
+			'objectTaxonomy'		=> $this->request->getVar('taxonomy'),
+			'objectViews'			=> 0,
+			'isObjectActive'		=> $this->request->getVar('is_active')
+		]);
+
+		return redirect()
+			->route('admin_object', $object->_id)
+			->with('msg', [
+				'type' => 'success',
+				'title' => 'Felicitaciones',
+				'body' => '¡Ítem agregado con éxito!',
+			]);
 	}
 
 	public function delete(string $id)

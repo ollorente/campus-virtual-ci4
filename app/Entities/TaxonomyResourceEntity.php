@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use CodeIgniter\Entity;
 
-class ResourcetaxonomyEntity extends Entity
+class TaxonomyResourceEntity extends Entity
 {
 	protected $datamap = [];
 	protected $dates   = [

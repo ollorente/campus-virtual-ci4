@@ -8,7 +8,7 @@
     <meta name="description" content="Backoffice">
     <meta name="author" content="Universidad Colegio Mayor de Cundinamarca">
 
-    <title><?= $this->renderSection('title') ?> | UCMC © Admin Campus Virtual</title>
+    <title><?= $this->renderSection('title') ?> | Unicolmayor © Admin Campus Virtual</title>
     <link rel="shortcut icon" href="https://res.cloudinary.com/un1c0lm4y0r/image/upload/v1607725121/favicon_pvtmxa.png" type="image/x-icon">
 
 
@@ -27,6 +27,12 @@
     <?= $this->renderSection('content') ?>
     <?= $this->include('Admin/layouts/footer') ?>
     <?= $this->renderSection('js') ?>
+
+    <script>
+        setTimeout(() => {
+        $('#alert').alert('close');
+        }, 4000) 
+    </script>
 </body>
 
 </html>

@@ -18,6 +18,12 @@ Editar menú
 
 		<div class="col-12">
 
+			<?php if (session('msg')) : ?>
+			<div class="alert alert-<?= session('msg.type') ?>" role="alert" id="alert">
+				<?= session('msg.body') ?>
+			</div>
+			<?php endif; ?>
+
 			<form action="" method="POST">
 				<div class="form-group">
 					<label for="name">Título del menú</label>

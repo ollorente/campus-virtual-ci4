@@ -55,7 +55,7 @@ class Course extends BaseController
 			->with('msg', [
 				'type' => 'success',
 				'title' => 'Felicitaciones',
-				'body' => '¡País agregado con éxito!',
+				'body' => '¡Ítem agregado con éxito!',
 			]);
 	}
 
@@ -89,9 +89,9 @@ class Course extends BaseController
 	{
 		if (!$this->validate([
 			'id' => 'required|is_not_unique[courses._id]',
-			'courseName' => 'required|max_length[100]',
-			'courseNameUrl' => 'required|max_length[100]',
-			'isCourseActive' => 'required|alpha_numeric|max_length[1]',
+			'name' => 'required|max_length[100]',
+			'url' => 'required|max_length[100]',
+			'is_active' => 'required|alpha_numeric|max_length[1]',
 		])) {
 			return redirect()
 				->back()
@@ -111,9 +111,9 @@ class Course extends BaseController
 
 		$model->save([
 			'_id' => trim($this->request->getVar('id')),
-			'courseName' => trim($this->request->getVar('courseName')),
-			'courseNameUrl' => trim($this->request->getVar('courseNameUrl')),
-			'isCourseActive' => trim($this->request->getVar('isCourseActive')),
+			'courseName' => trim($this->request->getVar('name')),
+			'courseNameUrl' => trim($this->request->getVar('url')),
+			'isCourseActive' => trim($this->request->getVar('is_active')),
 		]);
 
 		return redirect()
